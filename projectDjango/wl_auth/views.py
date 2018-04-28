@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 import sys
 from django.contrib.auth.forms import PasswordChangeForm
+
 # Create your views here.
 def signin(request):
 	if request.method == 'POST' and 'username' in request.POST:
@@ -25,13 +26,14 @@ def signin(request):
 				# print >>sys.stderr, "session expiry: %s"%request.session.get_expiry_age()
 
 				login(request, user)
-				if 'username' in request.session:
-					print >>sys.stderr, "username_i: %s"%request.session['username']
+				# if 'username' in request.session:
+					# print >>sys.stderr, "username_i: %s"%request.session['username']
 				request.session['username'] = user.username
 				# print >>sys.stderr, "username_f: %s"%request.session['username']
 				
 				# return redirect('main:home')
 				return redirect('http://localhost:8000/admin/')
+				# return redirect('customer:home')
 			else:
 				msg="Disabled account"
 		else:
