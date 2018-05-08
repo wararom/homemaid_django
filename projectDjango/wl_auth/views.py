@@ -4,8 +4,10 @@ from django.contrib.auth import authenticate, login, logout, update_session_auth
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-import sys
-from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.forms import PasswordChangeForm,UserCreationForm
+from django.shortcuts import render, redirect
+
+
 
 # Create your views here.
 def signin(request):
@@ -14,9 +16,8 @@ def signin(request):
 		password = request.POST['password']
 		user = authenticate(username=username, password=password)
 		# print >>sys.stderr, "debug"
-		if user is not None:
+		if user is not None:	
 			if user.is_active:
-
 				if 'remember' in request.POST:
 					# print>>sys.stderr, "%s type: %s"%(request.POST['remember'],type(request.POST['remember']))
 					if request.POST['remember']=='1':
@@ -31,9 +32,9 @@ def signin(request):
 				request.session['username'] = user.username
 				# print >>sys.stderr, "username_f: %s"%request.session['username']
 				
-				# return redirect('main:home')
-				return redirect('http://localhost:8000/admin/')
 				# return redirect('customer:home')
+				# return redirect('http://localhost:8000/admin/')
+				return redirect('http://localhost:8000/app/reserve/')
 			else:
 				msg="Disabled account"
 		else:
@@ -47,7 +48,7 @@ def signout(request):
 		del request.session['username']
 		# print "del uname"
 	logout(request)
-	return redirect('wl_auth:signin')
+	return redirect('signin')
 
 @login_required(login_url='wl_auth:signin')
 def change_password(request):

@@ -1,3 +1,5 @@
+# from django.conf import settings
+# from .settings import PROJECT_FOLDER
 """
 Django settings for projectDjango project.
 
@@ -27,9 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,8 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'customer',
     'wl_auth',
-    'star_ratings',
     'crispy_forms',
+    # 'login',
+    
 ]
 
 MIDDLEWARE = [
@@ -81,12 +82,62 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': 'mydjangoappdb',
+        # 'USER': 'emailauthuser',
+        # 'PASSWORD':'password',
+        # 'HOST' : '',
+        # 'PORT' : '',
+     
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
+# AUTH_USER_MODEL = "login.CustomUser"
+
+# AUTHENTICATION_BACKENDS = ('login.backends.CustomUserAuth',)
+
+# SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
+
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'filters': {
+#         'require_debug_false': {
+#             '()': 'django.utils.log.RequireDebugFalse'
+#         }
+#     },
+#     'handlers': {
+#         'mail_admins': {
+#             'level': 'ERROR',
+#             'filters': ['require_debug_false'],
+#             'class': 'django.utils.log.AdminEmailHandler'
+#         }
+#     },
+#     'loggers': {
+#         'django.request': {
+#             'handlers': ['mail_admins'],
+#             'level': 'ERROR',
+#             'propagate': True,
+#         },
+#     }
+# }
+
+# try:
+#     import local_settings
+# except:
+#     pass
+
+# STATICFILES_FINDERS = (
+#     'django.contrib.staticfiles.finders.FileSystemFinder',
+#     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+# )
+# DEBUG = True
+# TEMPLATE_DEBUG = DEBUG
+
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -123,4 +174,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = '/res/reserve/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+MEDIA_ROOT = os.path.join(BASE_DIR, "static/admin/img")
+MEDIA_URL = '/img/'
+
+LOGIN_REDIRECT_URL = '/app/reserve/'

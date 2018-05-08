@@ -1,40 +1,89 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>Sign In</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="{% static 'vendor/metisMenu/metisMenu.min.css' %}" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="{% static 'dist_login/css/sb-admin-2.css' %}" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
+    <style>
+            input[type=text], select ,button{
+              /* width: 100%;
+              padding: 12px 20px;
+              margin: 8px 0; */
+              display: inline-block;
+              border: 1px solid #ccc;
+              border-radius: 4px;
+              box-sizing: border-box;
+              padding: 10px;
+              margin: 5px;
+          }
+          input[type=password], select ,button{
+              /* width: 100%;
+              padding: 12px 20px;
+              margin: 8px 0; */
+              display: inline-block;
+              border: 1px solid #ccc;
+              border-radius: 4px;
+              box-sizing: border-box;
+              padding: 10px;
+              margin: 5px;
+          }
+          input[type=submit] ,button{
+              width: 100px;
+              background-color: rgb(37, 19, 2);
+              color: white;
+              padding: 14px 20px;
+              margin-left: auto;
+              margin-right: auto;
+              border: none;
+              /* border-radius: 4px; */
+              cursor: pointer;
+              
+              
+          }
+          
+          input[type=submit]:hover,button:hover {
+              background-color: rgb(6, 44, 31);
+          }
+          
+          .signin-content {
+              border-radius: 5px;
+              background-color:rgba(255, 255, 255, 0.87);
+              padding: 50px;
+              margin-left: auto;
+              margin-right: auto;
+              margin-top: 3%;
+              
+              
+          }
+          .signin-bg{
+              background-image: url("../../img/bg.jpg");
+              background-repeat: no-repeat;
+              background-size: cover;
+              
+          }
+          .sign-text{
+              text-align: center;
+              color:white;
+              margin-top: 4%;
+              font-size: 65px;
+              font-style: oblique;
+          }
+   
+          .register{
+              color:green;
+          }
+          .button-content{
+              display: grid;
+              text-align: center;
+          }
+          </style>
 </head>
 
-<body>
-
+<!-- <body>
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
@@ -55,11 +104,14 @@
                                     <label>
                                         <input name="remember" type="checkbox" value="Remember Me">Remember Me
                                     </label>
+                                    
                                 </div>
+                                <a href="{% url 'register' %}">Register</a><br>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <input type="submit" class="btn btn-lg btn-success btn-block" value="Sign In">
+                               <!-- <input type="submit" class="btn btn-lg btn-success btn-block" value="Sign In">
                             </fieldset>
                         </form>
+                        
                         <p class="text-danger">{{msg}}</p>
                     </div>
                 </div>
@@ -67,18 +119,41 @@
         </div>
     </div>
 
-    <!-- jQuery -->
-    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+</body>  -->
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="{% static 'vendor/metisMenu/metisMenu.min.js' %}"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="{% static 'dist_login/js/sb-admin-2.js' %}"></script>
-
+<body class="signin-bg">
+    <p class="sign-text">Sign in</p>
+    <div class="signin-content">
+            <form role="form" method="post" action="">
+                {% csrf_token %}
+                <table style="margin: auto">
+                    <tr>
+                    <!-- <div class="form-group"> -->
+                        <td>{{ form.username.label_tag }}</td>
+                        <td><input class="" placeholder="Emai" name="username" type="text" autofocus></td>
+                        <!-- </div> -->
+                    </tr>
+                    <tr>
+                    <!-- <div class="form-group"> -->
+                        <td>{{ form.password.label_tag }}</td>
+                        <td><input class="" placeholder="Password" name="password" type="password" value=""></td>
+                        <!-- </div> -->
+                    </tr>
+                </table>
+                <div class="button-content">
+                    <input type="submit" class="btn btn-lg btn-success btn-block" value="Login">
+                    <a class="register" href="{% url 'signup' %}">Register</a>
+                </div>
+            </form> 
+        </div>           
+      <!-- <div class="button-content">
+        
+        <input type="submit" value="login" />
+        <input type="hidden" name="next" value="{{ next }}" />
+        <a class="register" href="{{'register.html'}}">Register</a>
+      </div> -->
+  </div>
 </body>
 
-</html>
+</html> 
+
