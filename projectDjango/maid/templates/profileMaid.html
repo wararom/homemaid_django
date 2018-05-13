@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<style>
+    input[type=text], select {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+  }
+  
+  input[type=submit] {
+      width: 100px;
+      background-color: rgb(37, 19, 2);
+      color: white;
+      padding: 14px 20px;
+      margin-left: 40%;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+  
+  }
+  
+  input[type=submit]:hover {
+      background-color: rgb(6, 44, 31);
+  }
+  
+
+  .signin-bg{
+      background-image: url("../img/bg.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      
+  }
+  .sign-text{
+      text-align: center;
+      color:white;
+      margin-top: 1%;
+      font-size: 65px;
+      font-style: oblique;
+  }
+  .register-content{
+      width: 500px;
+      height: 550px;
+      border-radius: 5px;
+      background-color:rgba(255, 255, 255, 0.87);
+      padding: 50px;
+      margin-left:auto;
+      margin-right: auto;
+      margin-top: 20px;
+  }
+  </style>
+
+<html>
+  <head>
+    <title>Profile</title>>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body class="signin-bg">
+      <p class="sign-text">Maid Profile</p>
+      <div class="register-content">
+       
+        {% for info in object_list %}
+
+        <!-- <li>{{car.model}} {{car.detail}} {{car.price}}</li> -->
+       
+        <div>
+            <img src="{{info.image}}"/>
+            <h4>{{info.first_name}}  {{info.last_name}}</h4>
+            <h4>{{info.address}} {{info.postcode}}</h4>
+            <h4>{{info.telephone}}</h4>
+            <h4>{{info.email}}</h4>
+            
+        </div>
+      
+      
+
+      
+      
+        <!-- {% empty %} -->
+      
+        {% endfor %}
+       
+        
+        </div>
+
+  </body>
+</html>
+
+first_name = models.CharField(max_length=50)
+	last_name = models.CharField(max_length=50)
+	address = models.CharField(max_length=100)
+	postcode = models.CharField(max_length=10)
+	telephone = models.CharField(max_length=50)
+	email = models.CharField(max_length=50)
+	image=models.ImageField(upload_to='images',null=True)

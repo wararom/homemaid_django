@@ -32,23 +32,19 @@ class CustomerForm(ModelForm):
 class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=True, help_text='Optional.')
     last_name = forms.CharField(max_length=30, required=True, help_text='Optional.')
-    # email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
-   
-
+    email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'password1', 'password2', )
-        exclude = ['email']
-
-
+        fields = ('username', 'first_name', 'last_name', 'password1', 'password2', 'email')
+        exclude = []
+        
 class UserForm(forms.ModelForm):
-    userBirth = forms.DateField()
-
     class Meta:
         model = User
-        fields = ('username', 'password', 'userBirth')
-        widgets = {
-            'username': forms.TextInput(),
-            'password': forms.PasswordInput(),
-            'userBirth': forms.DateField(),
-        }
+        fields = ('first_name', 'last_name', 'email')
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Customer
+        fields = ('__all__')
+        exclude =['user']

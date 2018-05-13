@@ -70,37 +70,20 @@
     </style>
 </head>
 <body class="signin-bg">
+   
     {% if user.is_authenticated %}
         Hi {{ user.username }}!
         <p><a href="{% url 'signout' %}">logout</a></p>
-        <p><a href="{% url 'viewpro' %}">Edit Profile</a></p>
+        <p><a href="{% url 'update_profile' %}">Edit Profile</a></p>
+        <p><a href="{% url 'viewmaidchoose' %}">View Maid</a></p>
         {% load crispy_forms_tags %}
         {% crispy form %}
+
     {% else %}
         <p>You are not logged in</p>
         <a href="{% url 'signin' %}">login</a> |
         <a href="{% url 'signup' %}">signup</a>
     {% endif %}
-  
+    
 </body>
 </html>
-
-
-<!-- <table border="1px solid black" width="800px">
-    <tr>
-      <th>Maid</th>
-      <th>Name</th>
-      <th>Last</th>
-      <th>Tel</th>
-    </tr>
-    {% for maid in maid_list %}
-        <tr>
-            <td><img src="{{maid.image.url}}" width="200px"></td>
-            <td> <a href=""> {{ maid.first_name }}</a></td>
-            <td> {{ maid.last_name }} </td>
-            <td> {{ maid.telephone }} </td>
-        </tr>
-    {% empty %}
-        <td>No articles yet.</td>
-    {% endfor %}
-  </table>  -->
