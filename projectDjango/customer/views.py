@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from .forms import ReserveForm, CustomerForm, UserForm, SignUpForm, ProfileForm
+from .forms import ReserveForm, CustomerForm, UserForm, SignUpForm, ProfileForm, UpSlipForm
 from .models import Customer, Maid, Reserve, Money
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
@@ -21,12 +21,14 @@ from django.contrib import messages
 @login_required
 def homepage(request):
     return render(request,"home.html")
+
+@login_required
 def slip(request):
     return render(request,"slip.html")
 
+@login_required
 def viewmaidchoose(request, pk=None):
     return None
-
 
 class SignUp(generic.CreateView):
     form_class = SignUpForm
@@ -41,7 +43,7 @@ class LoginRequiredMixin(object):
 class ReserveMaid(LoginRequiredMixin,CreateView):
     template_name='reserve.html'
     form_class = ReserveForm
-    success_url = '/app/slip'
+    success_url = '/app/slipform'
     def form_valid(self,form):
         form.instance.user=self.request.user
         return super(ReserveMaid,self).form_valid(form)
@@ -74,6 +76,12 @@ class ListMaidView(LoginRequiredMixin,ListView):
         # context['now'] = timezone.now()
         return context
 
+@login_required
+def	getinfo(request,pk=None):
+    pk = User.objects.get(username = request.user.username)
+    temp = Reserve.objects.filter(user_id=pk.id)
+    return render(request, 'detail_reserve.html', {'object_list':temp})
+    
 
 @login_required
 @transaction.atomic
@@ -94,3 +102,19 @@ def update_profile(request):
         return render(request, 'profile.html', {
             'user_form': user_form,
             'profile_form': profile_form})
+
+class SlipView(LoginRequiredMixin,CreateView):
+    model = Money
+    form_class = UpSlipForm  
+    template_name='slip.html'
+    success_url = '/app/home'
+    def form_valid(self,form):
+        form.instance.user=self.request.user
+        return super(SlipView,self).form_valid(form)
+
+    def showcost(self,request):
+        costfiled = ReserveForm()
+        if self.get(user='user.username'):
+            costfiled.cost = 1000
+        costfiled.save()
+        

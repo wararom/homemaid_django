@@ -1,2 +1,10 @@
-<h1>{{ object.user }}</h1>
-<p>{{ object.telephone }}</p>
+<h1>{{ user.username }}!!</h1>
+{% for temp in object_list %}
+<h4>{{temp.reserve_date}}</h4>
+<h4>{{temp.cost}}</h4>
+<h4>{{temp.typearea}}</h4>
+<h4>{{temp.size}}</h4>
+<h4>{{temp.addresswork}}</h4>
+<h4>{{temp.datework}}</h4>
+<h4>{{temp.maid_id}}</h4>
+{% endfor %}

@@ -3,3 +3,7 @@
 <p><a href="{% url 'update_profile' %}">Edit Profile</a></p>
 <p><a href="{% url 'viewmaidchoose' %}">View Maid</a></p>
 <a href="{% url 'reserve' %}">Reserve</a>
+
+Hi {{ user.username }}!
+{% load crispy_forms_tags %}
+{% crispy form %}

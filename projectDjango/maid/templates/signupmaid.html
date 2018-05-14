@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/mysty.css' %}"> -->
+  <title>Register</title>
+  <style>
+      input[type=text], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    
+    input[type=submit] {
+        width: 100px;
+        background-color: rgb(37, 19, 2);
+        color: white;
+        padding: 14px 20px;
+        margin-left: 40%;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    
+    }
+    
+    input[type=submit]:hover {
+        background-color: rgb(6, 44, 31);
+    }
+    
+  
+    .signin-bg{
+        background-image: url("../img/bg.jpg");
+        /* background-color: black; */
+        background-repeat: no-repeat;
+        background-size: cover;
+        
+    }
+    .sign-text{
+        text-align: center;
+        color:white;
+        margin-top: 1%;
+        font-size: 65px;
+        font-style: oblique;
+    }
+    .register-content{
+        width: 500px;
+        height: 700px;
+        border-radius: 5px;
+        background-color:rgba(255, 255, 255, 0.87);
+        padding: 50px;
+        margin-left:auto;
+        margin-right: auto;
+        margin-top: 20px;
+        
+    }
+    </style>
+</head>
+<body class="signin-bg">
+    <p class="sign-text">Register</p>
+    <div class="register-content">
+        {% block content %}
+        <h2>Sign up Maid</h2>
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit">Sign up</button>
+        </form>
+      {% endblock %}
+    </div>
+    
+</body>
+</html>

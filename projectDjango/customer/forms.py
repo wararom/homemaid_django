@@ -47,4 +47,15 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Customer
         fields = ('__all__')
-        exclude =['user']
+        exclude = ['user']
+
+class UpSlipForm(forms.ModelForm):
+    class Meta:
+        model = Money
+        exclude = ['resever_id','user']
+
+    def __init__(self, *args, **kwargs):
+        super(UpSlipForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.add_input(Submit('submit','Reserve Now'))
+        

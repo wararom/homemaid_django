@@ -58,22 +58,30 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   </head>
   <body class="signin-bg">
-      <p class="sign-text">Maid Profile</p>
+      <p class="sign-text">List Work to do for Maid</p>
       <div class="register-content">
-       
-        {% for info in object_list %}
+          <p><a href="{% url 'update_profile' %}">EDit Profile</a> || 
+          <a href="{% url 'signout' %}">Exit</a></p>
+        
+        {% for temp in object_list %}
+        
 
         <!-- <li>{{car.model}} {{car.detail}} {{car.price}}</li> -->
        
         <div>
-            <img src="{{info.image}}"/>
-            <h4>{{info.first_name}}  {{info.last_name}}</h4>
-            <h4>{{info.address}} {{info.postcode}}</h4>
-            <h4>{{info.telephone}}</h4>
-            <h4>{{info.email}}</h4>
+            <p>List Work ID : {{temp.id}}</p>
+            <!-- <img src="{{info.image}}"/> -->
+            <!-- <p>Reserve Date : {{temp.reserve_date}}</p> -->
+            <p>Cost : {{temp.cost}}</p>
+            <p>Asre : {{temp.typearea}}</p>
+            <p>Size : {{temp.size}}</p>
+            <p>Address Work : {{temp.addresswork}}</p>
+            <p>Date Work : {{temp.datework}}</p>
+            <p>User Reserve : {{temp.user.username}}</p>
+            <br>
             
         </div>
-      
+
       
 
       
@@ -87,11 +95,11 @@
 
   </body>
 </html>
-
+<!-- 
 first_name = models.CharField(max_length=50)
 	last_name = models.CharField(max_length=50)
 	address = models.CharField(max_length=100)
 	postcode = models.CharField(max_length=10)
 	telephone = models.CharField(max_length=50)
 	email = models.CharField(max_length=50)
-	image=models.ImageField(upload_to='images',null=True)
+	image=models.ImageField(upload_to='images',null=True) -->

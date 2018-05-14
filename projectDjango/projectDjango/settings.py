@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'wl_auth',
     'crispy_forms',
     'maid',
+    # 'djangoratings',
     
 ]
 

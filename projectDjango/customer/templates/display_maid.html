@@ -1,3 +1,4 @@
+{% load static %}
 Hi {{ user.username}}!!
 <!-- <h1>{{ customer.image }}</h1>
 <p>{{ customer.address }}</p>
@@ -14,14 +15,14 @@ Hi {{ user.username}}!!
         </tr>
         {% for maid in maid_list %}
             <tr>
-                <td><img src="{{ maid.imagemaid.url }}" width="200px"></td>
-                <td> <a href="{% url 'reserve_detail' pk=maid.id%}"> {{ maid.first_name }}</a></td>
+                <td><img src="{{ maid.image_maid.url }}" width="200px"></td>
+                <td> <a href="{% url 'reserve' %}"> {{ maid.first_name }}</a></td>
                 <td> {{ maid.last_name }} </td>
                 <td> {{ maid.telephone }} </td>
             </tr>
         {% empty %}
             <td>No articles yet.</td>
         {% endfor %}
-        <p><a href="{% url 'home' %}">BACK TO RESERVE</a></p>
+        <p><a href="{% url 'reserve' %}">BACK TO RESERVE</a></p>
 </table> 
 
