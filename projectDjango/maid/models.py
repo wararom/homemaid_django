@@ -9,3 +9,6 @@ from django.contrib.auth.models import User
 def create_or_update_maid_profile(sender, instance, created, **kwargs):
     if created:
         Maid.objects.create(user=instance)
+
+
+

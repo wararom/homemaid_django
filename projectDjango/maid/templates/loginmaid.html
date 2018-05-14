@@ -1,6 +1,98 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+        <style>
+        input[type=text], select ,button{
+            /* width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0; */
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            padding: 10px;
+            margin: 5px;
+        }
+        input[type=password], select ,button{
+            /* width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0; */
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            padding: 10px;
+            margin: 5px;
+        }
+        input[type=submit] ,button{
+            width: 100px;
+            background-color: rgb(37, 19, 2);
+            color: white;
+            padding: 14px 20px;
+            margin-left: auto;
+            margin-right: auto;
+            border: none;
+            /* border-radius: 4px; */
+            cursor: pointer;
+            
+            
+        }
+        
+        input[type=submit]:hover,button:hover {
+            background-color: rgb(6, 44, 31);
+        }
+        
+        .signin-content {
+            border-radius: 5px;
+            background-color:rgba(255, 255, 255, 0.87);
+            padding: 50px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 30%;
+            width: 50%;
+            height:100%;
+
+            
+            
+        }
+        .signin-bg{
+            background-image: url("../../img/bg.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding-bottom:90%;
+            
+        }
+        .sign-text{
+            text-align: center;
+            color:#24465c;
+            font-size: 5vw;
+            font-style: oblique;
+            padding: 0%;
+            margin-top: 1%;
+        }
+
+        .register{
+            color:green;
+        }
+        .button-content{
+            display: grid;
+            text-align: center;
+        }
+        .logo{
+        width: 40%;
+        height: 50%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 0%;
+        margin-top: 0%;
+         
+      }
+      .logobg{
+          display: flex;
+          flex-flow: column;
+          justify-content:center;
+      }
+              </style>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,84 +100,18 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Sign In</title>
-    <style>
-            input[type=text], select ,button{
-              /* width: 100%;
-              padding: 12px 20px;
-              margin: 8px 0; */
-              display: inline-block;
-              border: 1px solid #ccc;
-              border-radius: 4px;
-              box-sizing: border-box;
-              padding: 10px;
-              margin: 5px;
-          }
-          input[type=password], select ,button{
-              /* width: 100%;
-              padding: 12px 20px;
-              margin: 8px 0; */
-              display: inline-block;
-              border: 1px solid #ccc;
-              border-radius: 4px;
-              box-sizing: border-box;
-              padding: 10px;
-              margin: 5px;
-          }
-          input[type=submit] ,button{
-              width: 100px;
-              background-color: rgb(37, 19, 2);
-              color: white;
-              padding: 14px 20px;
-              margin-left: auto;
-              margin-right: auto;
-              border: none;
-              /* border-radius: 4px; */
-              cursor: pointer;
-              
-              
-          }
-          
-          input[type=submit]:hover,button:hover {
-              background-color: rgb(6, 44, 31);
-          }
-          
-          .signin-content {
-              border-radius: 5px;
-              background-color:rgba(255, 255, 255, 0.87);
-              padding: 50px;
-              margin-left: auto;
-              margin-right: auto;
-              margin-top: 3%;
-              
-              
-          }
-          .signin-bg{
-              background-image: url("../../img/bg.jpg");
-              background-repeat: no-repeat;
-              background-size: cover;
-              
-          }
-          .sign-text{
-              text-align: center;
-              color:white;
-              margin-top: 4%;
-              font-size: 65px;
-              font-style: oblique;
-          }
-   
-          .register{
-              color:green;
-          }
-          .button-content{
-              display: grid;
-              text-align: center;
-          }
-          </style>
+    
 </head>
 
 <body class="signin-bg">
-    <p class="sign-text">Sign in MAID</p>
+
     <div class="signin-content">
+            <div class="logobg">
+                    <img class="logo" src="../../img/logo.png">
+                    
+                    
+                </div>
+                <h1 class="sign-text">Sign in MAID</h1>
             <form role="form" method="post" action="">
                 {% csrf_token %}
                 <table style="margin: auto">

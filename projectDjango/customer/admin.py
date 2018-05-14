@@ -1,5 +1,5 @@
 from django.contrib import admin
-from customer.models import Customer, Maid, Reserve
+from customer.models import Customer, Maid, Reserve,Money,Review
 from django.contrib import admin
 
 
@@ -17,3 +17,10 @@ class ReserveAdmin(admin.ModelAdmin):
 	list_editable=('cost','reserve_date')
 admin.site.register(Reserve,ReserveAdmin)
 
+class MoneyAdmin(admin.ModelAdmin):
+	list_display=[f.name for f in Money._meta.fields]
+admin.site.register(Money,MoneyAdmin)
+
+class ReviewAdmin(admin.ModelAdmin):
+	list_display=[f.name for f in Review._meta.fields]
+admin.site.register(Review,ReviewAdmin)

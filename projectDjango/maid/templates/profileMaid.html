@@ -1,56 +1,113 @@
 <!DOCTYPE html>
 <style>
-    input[type=text], select {
-      width: 100%;
-      padding: 12px 20px;
-      margin: 8px 0;
-      display: inline-block;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-  }
-  
-  input[type=submit] {
-      width: 100px;
-      background-color: rgb(37, 19, 2);
-      color: white;
-      padding: 14px 20px;
-      margin-left: 40%;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-  
-  }
-  
-  input[type=submit]:hover {
-      background-color: rgb(6, 44, 31);
-  }
-  
+        input[type=text], select ,button{
+            /* width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0; */
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            padding: 10px;
+            margin: 5px;
+        }
+        input[type=password], select ,button{
+            /* width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0; */
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            padding: 10px;
+            margin: 5px;
+        }
+        input[type=submit] ,button{
+            width: 100px;
+            background-color: rgb(37, 19, 2);
+            color: white;
+            padding: 14px 20px;
+            margin-left: auto;
+            margin-right: auto;
+            border: none;
+            /* border-radius: 4px; */
+            cursor: pointer;
+            
+            
+        }
+        
+        input[type=submit]:hover,button:hover {
+            background-color: rgb(6, 44, 31);
+        }
+        
+        .register-content {
+            border-radius: 5px;
+            background-color:rgba(255, 255, 255, 0.87);
+            padding: 50px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 20%;
+            width: 70%;
+            height:100%;
 
-  .signin-bg{
-      background-image: url("../img/bg.jpg");
-      background-repeat: no-repeat;
-      background-size: cover;
-      
-  }
-  .sign-text{
-      text-align: center;
-      color:white;
-      margin-top: 1%;
-      font-size: 65px;
-      font-style: oblique;
-  }
-  .register-content{
-      width: 500px;
-      height: 550px;
-      border-radius: 5px;
-      background-color:rgba(255, 255, 255, 0.87);
-      padding: 50px;
-      margin-left:auto;
-      margin-right: auto;
-      margin-top: 20px;
-  }
-  </style>
+            
+            
+        }
+        .signin-bg{
+            background-image: url("../../img/bg.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding-bottom:90%;
+            
+        }
+        .sign-text{
+            text-align: center;
+            color:#24465c;
+            font-size: 5vw;
+            font-style: oblique;
+            padding: 0%;
+            margin-top: 1%;
+        }
+        .work-text{
+            color:white;
+            font-size: 4vw;
+            font-style: oblique;
+            padding: 5%;
+            margin-top: 3%;
+            background-color: #24465c;
+            border-radius: 30px;
+        }
+
+        .register{
+            color:green;
+        }
+        .button-content{
+            display: grid;
+            text-align: center;
+        }
+        .logo{
+        width: 40%;
+        height: 50%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 0%;
+        margin-top: 0%;
+         
+      }
+      .logobg{
+          display: flex;
+          flex-flow: column;
+          justify-content:center;
+      }
+    .menu{
+        text-align: center;
+        color:#24465c;
+        font-size: 4vw;
+        font-style: oblique;
+        padding: 0%;
+        margin-top: 1%;
+}
+</style>
 
 <html>
   <head>
@@ -58,17 +115,23 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   </head>
   <body class="signin-bg">
-      <p class="sign-text">List Work to do for Maid</p>
+     
       <div class="register-content">
-          <p><a href="{% url 'update_profile' %}">EDit Profile</a> || 
-          <a href="{% url 'signout' %}">Exit</a></p>
+            <div class="logobg">
+                    <img class="logo" src="../../img/logo.png">
+                    <h1 class="sign-text">List Work to do for Maid</h1>
+                    
+                    
+                </div>
+          <p class="menu"><a style="color:#24465c" href="{% url 'update_maidprofile' %}">Edit Profile</a> || 
+          <a style="color:#24465c" href="{% url 'signout' %}">Logout</a></p>
         
         {% for temp in object_list %}
         
 
         <!-- <li>{{car.model}} {{car.detail}} {{car.price}}</li> -->
        
-        <div>
+        <div class="work-text">
             <p>List Work ID : {{temp.id}}</p>
             <!-- <img src="{{info.image}}"/> -->
             <!-- <p>Reserve Date : {{temp.reserve_date}}</p> -->

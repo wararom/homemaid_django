@@ -7,6 +7,7 @@ from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 from django.db.models.signals import pre_save,post_save
 from django.dispatch import receiver
+import numpy as np
 	# User = get_user_model()
 
 class Customer(models.Model):
@@ -30,9 +31,26 @@ class Maid(models.Model):
 	address = models.CharField(max_length=100,null=True)
 	telephone = models.CharField(max_length=10,null=True)
 
+	def average_rating(self):
+		all_ratings = map(lambda x: x.rating, self.review_set.all())
+		return np.mean(all_ratings)
+
 	def __str__(self):
 		return self.user.username
 
+class Review(models.Model):
+    RATING_CHOICES = (
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
+    )
+    maid = models.ForeignKey(Maid , on_delete=models.SET_NULL,null=True)
+    # pub_date = models.DateTimeField('date published')
+    # user_name = models.CharField(max_length=100)
+    # comment = models.CharField(max_length=200)
+    rating = models.IntegerField(choices=RATING_CHOICES)
 
 TYPEAREA_CHOICES=[
 	('home', 'Home'),

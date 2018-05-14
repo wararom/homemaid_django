@@ -5,7 +5,7 @@ from crispy_forms.layout import Submit
 from django.contrib.admin import widgets
 import datetime
 # from .models import Maid
-from customer.models import Maid
+from customer.models import Maid,Review
 from django.contrib import admin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -39,3 +39,12 @@ class MaidProfileForm(forms.ModelForm):
     class Meta:
         model = Maid
         exclude = ['user']
+
+class RateForm(ModelForm):
+    class Meta:
+        model = Review
+        exclude = []
+    def __init__(self, *args, **kwargs):
+        super(RateForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.add_input(Submit('submit','Send Review'))

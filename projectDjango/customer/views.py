@@ -110,11 +110,6 @@ class SlipView(LoginRequiredMixin,CreateView):
     success_url = '/app/home'
     def form_valid(self,form):
         form.instance.user=self.request.user
+        # form.instance.reserve=self.request.user
         return super(SlipView,self).form_valid(form)
-
-    def showcost(self,request):
-        costfiled = ReserveForm()
-        if self.get(user='user.username'):
-            costfiled.cost = 1000
-        costfiled.save()
         
