@@ -38,10 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'customer',
-    'wl_auth',
     'crispy_forms',
     'maid',
-    # 'djangoratings',
+    
     
 ]
 

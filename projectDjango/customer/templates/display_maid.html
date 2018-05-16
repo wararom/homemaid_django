@@ -136,15 +136,12 @@ html>
                         height: 150px;
                         border-radius: 20px;
                 }
-.btnchoose{
-       
-        text-align: center;
-        margin-left: 35%;
-        width:200px;
-        height: 80px;
-        border-radius: 20px;
+.button-maid{
+        width: 200px;
         background-color: white;
-        color:#24465c;
+        border:1px solid;
+        border-radius: 10px;
+        margin-left: 1%;
 }
 
 </style>
@@ -167,10 +164,10 @@ html>
 
         {% for maid in maid_list %}
         <div class="work-text">
-                <img src="{{ maid.image_maid.url }}"  width="200px" height="200px" style="float: left;margin-right: 3%;">
+                <img src="{{ maid.image_maid.url }}"  width="260px" height="280px" style="float: left;margin-right: 3%;">
                 <p ><a >Name: {{ maid.user.first_name }}   {{ maid.user.last_name }} </a></p> 
                 <p>Tel:{{ maid.telephone }}</p>
-                <p> <a href="../reservemaid/{{maid.id}}" style="color:wheat">Choose    </a> </p>
+                <button class="button-maid"> <a href="../reservemaid/{{maid.id}}" style="color:#24465c; text-decoration: unset;">Choose    </a> </button>
         </div>
         
         {% empty %}
