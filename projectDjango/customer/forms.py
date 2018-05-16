@@ -11,12 +11,12 @@ from django.contrib.auth.models import User
 class ReserveForm(ModelForm):
     class Meta:
         model = Reserve
-        exclude = ['user','image','cost','reseerve_date']
+        exclude = ['user','image','cost','reseerve_date','maid_id']
 
     def __init__(self, *args, **kwargs):
         super(ReserveForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.add_input(Submit('submit','Reserve Now'))
+        self.helper.add_input(Submit('submit','Reserve'))
 
 class CustomerForm(ModelForm):
     class Meta:
@@ -30,9 +30,9 @@ class CustomerForm(ModelForm):
 
 
 class SignUpForm(UserCreationForm):
-    first_name = forms.CharField(max_length=30, required=True, help_text='Optional.')
-    last_name = forms.CharField(max_length=30, required=True, help_text='Optional.')
-    email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
+    first_name = forms.CharField(max_length=30, required=True)
+    last_name = forms.CharField(max_length=30, required=True)
+    email = forms.EmailField(max_length=254,)
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'password1', 'password2', 'email')
@@ -58,4 +58,8 @@ class UpSlipForm(forms.ModelForm):
         super(UpSlipForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.add_input(Submit('submit','Reserve Now'))
-        
+    
+class MaidForm(forms.ModelForm):
+    class Meta:
+        model = Maid
+        fields = ('__all__')

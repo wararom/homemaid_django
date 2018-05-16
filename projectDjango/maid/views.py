@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
-from .forms import MaidForm,SignUpMaidForm,MaidProfileForm,UserForm
+from .forms import MaidForm,SignUpMaidForm,MaidProfileForm,UserForm,RateForm
 from .models import Maid
 from customer.models import Reserve
 from django.contrib.auth.decorators import login_required
@@ -48,7 +48,7 @@ def	getinfomaid(request,pk=None):
     temp = Reserve.objects.filter(maid_id=pk.id)
     return render(request, 'profileMaid.html', {'object_list':temp})
 
-def signin(request):
+def signinmaid(request):
 	if request.method == 'POST' and 'username' in request.POST:
 		username = request.POST['username']
 		password = request.POST['password']
@@ -63,7 +63,7 @@ def signin(request):
 					request.session.set_expiry(14400) 
 				login(request, user)
 				request.session['username'] = user.username
-				return redirect('/maid/profilemaid')
+				return redirect('profilemaid')
 			else:
 				msg="Disabled account"
 		else:
@@ -71,7 +71,7 @@ def signin(request):
 		return render(request,'loginmaid.html',{'msg': msg})   
 	return render(request,'loginmaid.html',{'msg': ""})
 
-def signout(request):
+def signoutmaid(request):
 	if 'username' in request.session:
 		del request.session['username']
 	logout(request)
@@ -79,7 +79,7 @@ def signout(request):
 
 @login_required
 @transaction.atomic
-def update_profile(request):
+def update_maidprofile(request):
         if request.method == 'POST':
             user_form = UserForm(request.POST, instance=request.user)
             profile_form = MaidProfileForm(request.POST,instance=request.user.maid)
@@ -97,3 +97,14 @@ def update_profile(request):
             'user_form': user_form,
             'profile_form': profile_form})
 
+def retereview(request):
+
+    return render(request,"rate.html")
+
+class RateReviews(LoginRequiredMixin,CreateView):
+    template_name='rate.html'
+    form_class = RateForm
+    success_url = '/app/home'
+    def form_valid(self,form):
+        form.instance.user=self.request.user
+        return super(RateReviews,self).form_valid(form)
